@@ -74,8 +74,8 @@ class GolosinaBaniada {
     var property golosinaBase
     var pesoBanio = 4
     var property peso = golosinaBase.peso() + pesoBanio
-    const precio = golosinaBase.precio() + 2
-    var sabor = golosinaBase.sabor()
+    method precio() = golosinaBase.precio() + 2
+    var property sabor = golosinaBase.sabor()
     const esLibreDeGluten = golosinaBase.esLibreDeGluten()
     method recibirMordisco() {
         golosinaBase.recibirMordisco()

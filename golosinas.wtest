@@ -1,0 +1,83 @@
+import golosinas.*
+/*
+Para la golosina bañada, hacer las mismas comprobaciones, para tres casos distintos:
+
+bañando una pastilla tutti-frutti.
+bañando un chocolatín.
+bañando un chupetín.
+*/
+
+describe "Comportamiento de golosinas" {
+  const pastillaTutti1 = new PastillaTuttiFrutti(esLibreDeGluten = true)
+  const chocolatin1 = new Chocolatin(peso = 40)
+  const oblea1 = new Oblea()
+  const chupetin1 = new Chupetin()
+
+  const golosinaBaniada1 = new GolosinaBaniada(golosinaBase = pastillaTutti1)
+  const golosinaBaniada2 = new GolosinaBaniada(golosinaBase = chocolatin1)
+  const golosinaBaniada3 = new GolosinaBaniada(golosinaBase = chupetin1)
+
+  test "Bombon pesa 15 gramos" {
+    const bombon1 = new Bombon()
+    assert.equals(15, bombon1.peso())
+  }
+  test "Alfajor pesa 300gramos" {
+    const alfajor1 = new Alfajor()
+    assert.equals(300, alfajor1.peso())
+  }
+  test "Caramelo pesa 5 gramos" {
+    const caramelo1 = new Caramelo()
+    assert.equals(5, caramelo1.peso())
+  }
+  test "Chupetin pesa 7 gramos" {
+  
+    assert.equals(7, chupetin1.peso())
+  }
+  test "Oblea pesa 250 gramos" {
+    assert.equals(250, oblea1.peso())
+  }
+  test "Oblea pesa * gramos si se muerde 3 veces" {
+    oblea1.recibirMordisco()
+    oblea1.recibirMordisco()
+    oblea1.recibirMordisco()
+    assert.equals(15.625, oblea1.peso())
+  }
+  test "Chocolatin pesa 40 gramos" {
+    assert.equals(40, chocolatin1.peso())
+  }
+  test "Chocolatin pesa 100 gramos" {
+    const chocolatin2 = new Chocolatin(peso = 100)
+    assert.equals(100, chocolatin2.peso())
+  }
+  test "Pastilas tutti frutti pesa 5 gramos" {
+    assert.equals(5, pastillaTutti1.peso())
+  }
+  test "Pastilas tutti frutti es libre de gluten" {
+    assert.that(pastillaTutti1.esLibreDeGluten())
+  }
+  test "Pastillas de tutti frutti no es libre de gluten" {
+    const pastillaTutti2 = new PastillaTuttiFrutti(esLibreDeGluten = false)
+    assert.notThat(pastillaTutti2.esLibreDeGluten())
+  }
+  test "Pastilla de tutti fruti cambia a sabor naranja si se muerde 2 veces" {
+    pastillaTutti1.recibirMordisco()
+    pastillaTutti1.recibirMordisco()
+    assert.equals(naranja, pastillaTutti1.sabor())
+  }
+  test "Chocolatin peso 36 si se muerde 2 veces" {
+    chocolatin1.recibirMordisco()
+    chocolatin1.recibirMordisco()
+    assert.equals(36, chocolatin1.peso())
+  }
+  test "Pastilla Tutti Frutti bañada pesa 9 gramos" {
+    assert.equals(9, golosinaBaniada1.peso())
+  }
+  test "Pastilla Tutti Frutti bañada cambia a naranja al morder dos veces" {
+    golosinaBaniada1.recibirMordisco()
+    golosinaBaniada1.recibirMordisco()
+    assert.equals(naranja, golosinaBaniada1.sabor())
+  }
+  test "Pastilla Tutti Frutti bañada tiene precio de 9 pesos" {
+    assert.equals(9, golosinaBaniada1.precio())
+  }
+}
